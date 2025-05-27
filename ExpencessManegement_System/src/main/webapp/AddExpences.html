@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Expense</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 380px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group textarea {
+      height: 60px;
+      resize: vertical;
+    }
+
+    .char-counter {
+      font-size: 12px;
+      color: #666;
+      text-align: right;
+      margin-top: 2px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: #218838;
+    }
+
+    @media (max-width: 400px) {
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+  <script>
+    function updateCharCount() {
+      const textarea = document.getElementById("description");
+      const counter = document.getElementById("charCounter");
+      counter.textContent = textarea.value.length + "/400";
+    }
+  </script>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Add Expense</h2>
+    <form action="AddExpencessServlet" method="get">
+      
+      <div class="form-group">
+        <label for="name">Expense Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" maxlength="400" oninput="updateCharCount()" required></textarea>
+        <div class="char-counter" id="charCounter">0/400</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="basis">Basis</label>
+        <select id="basis" name="basis" required>
+          <option value="">None</option>
+          <option value="daily">Daily</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="text" id="amount" name="amount" required>
+      </div>
+
+      <div class="form-group">
+        <label for="time">Time</label>
+        <input type="time" id="time" name="time" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="">None</option>
+          <option value="food">Food</option>
+          <option value="transport">Transport</option>
+          <option value="utilities">Utilities</option>
+          <option value="shopping">Shopping</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="type">Payment Type</label>
+        <select id="type" name="type" required>
+          <option value="">None</option>
+          <option value="upi">UPI</option>
+          <option value="card">Card</option>
+          <option value="cash">Cash</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>

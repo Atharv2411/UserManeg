@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #3b82f6, #06b6d4, #a5f3fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #3c5a71;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="email"],
+        .login-container input[type="password"],
+        .login-container select {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 12px 0;
+            border: 1px solid #ccd6e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #f3f7fc;
+        }
+
+        .login-container input:focus,
+        .login-container select:focus {
+            border-color: #58a6e1;
+            outline: none;
+            box-shadow: 0 0 5px rgba(88, 166, 225, 0.5);
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 14px;
+            background: #58a6e1;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-container button:hover {
+            background: #478eb2;
+        }
+
+        .login-container .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95em;
+            color: #b0c4d8;
+        }
+
+        .login-container .footer a {
+            color: #58a6e1;
+            text-decoration: none;
+        }
+
+        .login-container .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Register</h2>
+        <form action="RegServlet" method="get">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="emailaddress" placeholder="Email Address" required>
+            <input type="password" name="pass" placeholder="Password" required>
+            <select name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+        <div class="footer">
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>

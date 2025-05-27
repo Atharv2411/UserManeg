@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate Expenses Based on Basis</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary-color: #f8f9fa;
+            --text-color: #212529;
+            --light-gray: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--secondary-color);
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <script>
+        function toggleDateInput() {
+            const basis = document.getElementById('basis').value;
+            const dateInput = document.getElementById('date');
+            const label = document.querySelector('label[for="date"]');
+
+            if (basis === 'daily') {
+                dateInput.type = 'date';
+                label.textContent = "Select Date:";
+                dateInput.required = true;
+                dateInput.min = '';
+                dateInput.max = '';
+            } else if (basis === 'monthly') {
+                dateInput.type = 'month';
+                label.textContent = "Select Month:";
+                dateInput.required = true;
+                dateInput.min = '';
+                dateInput.max = '';
+            } else if (basis === 'yearly') {
+                dateInput.type = 'number';
+                label.textContent = "Select Year:";
+                dateInput.required = true;
+                dateInput.min = "1900";
+                dateInput.max = new Date().getFullYear();
+                dateInput.placeholder = "e.g. 2025";
+            }
+        }
+
+        window.onload = function() {
+            toggleDateInput();
+            document.getElementById('basis').addEventListener('change', toggleDateInput);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Calculate Expenses</h2>
+            <form action="SelectBasisExpensesServlet" method="post">
+                <div class="form-group">
+                    <label for="basis">Choose Basis</label>
+                    <select name="basis" id="basis" required>
+                        <option value="daily">Daily</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date" id="date-label">Select Date:</label>
+                    <input id="date" name="date" required />
+                </div>
+
+                <button type="submit" class="btn">Calculate Expenses</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
